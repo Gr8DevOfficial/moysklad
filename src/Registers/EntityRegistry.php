@@ -27,6 +27,7 @@ use MoySklad\Entities\Documents\Movements\AbstractMovement;
 use MoySklad\Entities\Documents\Movements\Demand;
 use MoySklad\Entities\Documents\Movements\Enter;
 use MoySklad\Entities\Documents\Movements\Loss;
+use MoySklad\Entities\Documents\Movements\Move;
 use MoySklad\Entities\Documents\Movements\Supply;
 use MoySklad\Entities\Documents\Orders\AbstractOrder;
 use MoySklad\Entities\Documents\Orders\CustomerOrder;
@@ -36,6 +37,7 @@ use MoySklad\Entities\Documents\Positions\CustomerOrderPosition;
 use MoySklad\Entities\Documents\Positions\DemandPosition;
 use MoySklad\Entities\Documents\Positions\EnterPosition;
 use MoySklad\Entities\Documents\Positions\LossPosition;
+use MoySklad\Entities\Documents\Positions\MovePosition;
 use MoySklad\Entities\Products\Components\AbstractComponent;
 use MoySklad\Entities\Products\Components\BundleComponent;
 use MoySklad\Entities\Documents\PriceList;
@@ -109,6 +111,7 @@ class EntityRegistry extends AbstractSingleton{
         CustomerOrderPosition::class,
         DemandPosition::class,
         LossPosition::class,
+        MovePosition::class,
         AbstractComponent::class,
         BundleComponent::class,
         Country::class,
@@ -133,6 +136,7 @@ class EntityRegistry extends AbstractSingleton{
         RetailStore::class,
         Currency::class,
         Loss::class,
+        Move::class,
         Demand::class,
         Supply::class,
         AbstractCash::class,
