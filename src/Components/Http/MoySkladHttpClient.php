@@ -156,6 +156,7 @@ class MoySkladHttpClient{
                 $apiMethod,
                 $requestBody
             );
+
             if ( in_array($res->getStatusCode(), self::HTTP_CODE_SUCCESS) ){
                 if ( $requestHttpMethod !== self::METHOD_DELETE ){
                     $result = \json_decode($res->getBody());
@@ -177,6 +178,7 @@ class MoySkladHttpClient{
                 $res = $e->getResponse()->getBody()->getContents();
                 $except = new RequestFailedException($req, $res);
                 if ( $res = \json_decode($res) ){
+                    dd($res);
                     if ( isset($res->errors) || (is_array($res) && isset($res[0]->errors))){
                         $except = new ApiResponseException($req, $res);
                     }
