@@ -319,6 +319,22 @@ abstract class AbstractMutationBuilder{
         $this->e->links->link($linkedEntity, $specs);
         return $this;
     }
+    
+    public function addComponentsList(EntityList $positions){
+        $positions->each(function(AbstractProduct $position){
+            $position->assortment = [
+                'meta' => $position->getMeta()
+            ];
+            $this->e->links->link($position, LinkingSpecs::create([
+                'multiple' => true,
+                'name' => "components",
+                'excludedFields' => [
+                    'id', 'meta'
+                ]
+            ]));
+        });
+        return $this;
+    }
 
     public abstract function execute();
 }
