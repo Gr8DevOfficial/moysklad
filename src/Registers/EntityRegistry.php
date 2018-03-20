@@ -5,6 +5,8 @@ namespace MoySklad\Registers;
 use MoySklad\Entities\AbstractEntity;
 use MoySklad\Entities\Account;
 use MoySklad\Entities\Assortment;
+use MoySklad\Entities\Audit\Audit;
+use MoySklad\Entities\Audit\AuditEvent;
 use MoySklad\Entities\Cashier;
 use MoySklad\Entities\ContactPerson;
 use MoySklad\Entities\Contract;
@@ -63,7 +65,6 @@ use MoySklad\Entities\Misc\Attribute;
 use MoySklad\Entities\Misc\Characteristics;
 use MoySklad\Entities\Misc\CompanySettings;
 use MoySklad\Entities\Misc\CustomEntity;
-use MoySklad\Entities\Misc\CustomTemplate;
 use MoySklad\Entities\Misc\Publication;
 use MoySklad\Entities\Misc\State;
 use MoySklad\Entities\Misc\Webhook;
@@ -163,7 +164,9 @@ class EntityRegistry extends AbstractSingleton{
         Processing::class,
         ProcessingOrder::class,
         ProcessingPlan::class,
-        PriceList::class
+        PriceList::class,
+        Audit::class,
+        AuditEvent::class
     ];
     public $entityNames = [];
 
@@ -171,6 +174,12 @@ class EntityRegistry extends AbstractSingleton{
     {
         foreach ($this->entities as $i=>$e){
             $this->entityNames[$e::$entityName] = $e;
+        }
+    }
+
+    public function bootEntities(){
+        foreach ($this->entities as $e){
+            $e::boot();
         }
     }
 }
